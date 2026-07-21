@@ -3,11 +3,15 @@
   "name": "acgti",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2026-04-18",
+  "vars": {
+    "APP_ENV": "development"
+  },
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "acgti-stats",
-      "database_id": "23753cd6-93d4-4a65-b739-4ae456ae32de"
+      "database_name": "lysg-results",
+      "database_id": "cd3d03c0-abf9-4b08-9382-9d462f3d6992",
+      "migrations_dir": "migrations-daru"
     }
   ]
 }
