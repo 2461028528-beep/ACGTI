@@ -2,6 +2,8 @@ import type {
   Archetype,
   ArchetypeId,
   CharacterMatch,
+  DaruCharacterMatchResult,
+  DaruCharacterProfile,
   DimensionId,
   DimensionPair,
   DimensionScore,
@@ -10,8 +12,8 @@ import type {
   QuestionArchetypeWeightId,
   QuizResult,
 } from '../types/quiz'
-import questionDimensionWeights from '../data/questionDimensionWeights.json' with { type: 'json' }
-import { getCharacterPopulationProbability } from './characterProbability.ts'
+import daruCharacterProfiles from '../data/daruCharacterProfiles.json' with { type: 'json' }
+import daruCharacterTendencies from '../data/daruCharacterTendencies.json' with { type: 'json' }
 
 const DIMENSION_LETTERS: Record<DimensionPair, [MBTILetter, MBTILetter]> = {
   'E_I': ['E', 'I'],
@@ -58,15 +60,27 @@ const QUESTION_WEIGHT_FALLBACKS: Record<DimensionPair, Partial<Record<QuestionAr
 }
 
 const VECTOR_AXES: DimensionId[] = ['expression', 'temperature', 'judgement', 'order', 'agency', 'aura']
-const ARCHETYPE_IDS = Object.values(ROLE_TO_ARCHETYPE)
+const ARCHETYPE_IDS: ArchetypeId[] = [
+  'luminous-lead',
+  'icebound-observer',
+  'oathbound-captain',
+  'trickster-orbit',
+  'gentle-healer',
+  'shadow-strategist',
+  'chaos-spark',
+  'moonlit-guardian',
+]
 
 const MBTI_WEIGHT = 0.25
 const ARCHETYPE_WEIGHT = 0.28
 const VECTOR_WEIGHT = 0.27
 const CHARACTER_SPECIFIC_WEIGHT = 0.2
 const CLOSE_MATCH_THRESHOLD = 0.025
-const ENABLE_DIMENSION_WEIGHT_OVERRIDE = true
-const DIMENSION_SCORE_WEIGHTS = questionDimensionWeights as Record<string, Partial<Record<DimensionPair, number>>>
+const DARU_MBTI_WEIGHT = 0.25
+const DARU_TRAIT_WEIGHT = 0.5
+const DARU_TENDENCY_WEIGHT = 0.25
+const DARU_PROFILES = daruCharacterProfiles as DaruCharacterProfile[]
+const DARU_TENDENCIES = daruCharacterTendencies as DaruCharacterTendencyMap
 
 // 16personalities 风格的维度标签配置
 export const TRAIT_CONFIG = {
@@ -134,62 +148,152 @@ const DEFAULT_DEBUG_PERCENTAGES: Record<DimensionPair, number> = {
 type DirectionalMax = Record<DimensionPair, { positive: number; negative: number }>
 type ArchetypeAccumulator = Record<ArchetypeId, number>
 type UserVector = Record<DimensionId, number>
+type TraitScores = Record<string, number>
+type DaruCharacterTendencyMap = Record<string, Record<string, Array<{
+  optionId: string
+  weight: number
+}>>>
 
 type AnswerProfile = {
   scores: Record<DimensionPair, DimensionScore>
+  rawDimensionScores: Record<DimensionPair, number>
   mbtiCode: string
   archetypeRaw: ArchetypeAccumulator
   userVector: UserVector
+  traitScores: TraitScores
   matchedArchetype: Archetype
+}
+
+type DaruAnswerProfile = Pick<
+  AnswerProfile,
+  'scores' | 'rawDimensionScores' | 'mbtiCode' | 'traitScores'
+>
+
+const DARU_COMPAT_ARCHETYPE: Archetype = {
+  id: 'daru' as ArchetypeId,
+  name: 'Daru',
+  subtitle: '',
+  oneLiners: [],
+  description: '',
+  tags: [],
+  narrativeRole: '',
+  spotlight: '',
+  weakness: '',
+  keywords: [],
+  accent: '#33a474',
+  vector: { expression: 0, temperature: 0, judgement: 0, order: 0, agency: 0, aura: 0 },
 }
 
 export function calculateQuizResult({
   answers,
   questions,
-  archetypes,
-  characters,
 }: {
   answers: number[]
   questions: Question[]
-  archetypes: Archetype[]
-  characters: CharacterMatch[]
+  archetypes?: Archetype[]
+  characters?: CharacterMatch[]
 }): QuizResult {
-  const answerProfile = buildAnswerProfile({
+  const answerProfile = buildDaruAnswerProfile({ answers, questions })
+  const { scores, rawDimensionScores, mbtiCode } = answerProfile
+  const daruCharacterMatches = rankDaruCharacters({
     answers,
     questions,
-    archetypes,
-  })
-  const { scores, mbtiCode, archetypeRaw, userVector, matchedArchetype } = answerProfile
-  const characterRankings = rankCharactersByProfile({
     scores,
-    characters,
-    archetypeRaw,
-    userVector,
-    answers,
+    traitScores: answerProfile.traitScores,
   })
-  const leadingMatches = collectLeadingMatches(characterRankings)
-  const featuredCharacter = leadingMatches[0]?.character ?? null
-  const charMatches = leadingMatches.slice(0, 3).map((item) => item.character)
-  const topCharacterMatches = leadingMatches.slice(0, 4).map((item) => ({
-    character: item.character,
-    score: calculateCharacterMatchScore(item),
-    probability: getCharacterPopulationProbability(item.character.id),
-  }))
-  const roleCode = featuredCharacter?.code ?? 'UNKN'
-  const matchScore = calculateCharacterMatchScore(leadingMatches[0])
-  const matchProbability = getCharacterPopulationProbability(featuredCharacter?.id)
+  const matchedCharacter = daruCharacterMatches[0]?.character ?? null
+  const matchScore = daruCharacterMatches[0]?.totalScore ?? 0
 
   return {
-    code: roleCode,
+    code: matchedCharacter?.id ?? 'daru',
     mbtiCode,
     scores,
-    archetype: matchedArchetype,
-    tags: [matchedArchetype.narrativeRole, ...matchedArchetype.tags].slice(0, 6),
+    rawDimensionScores,
+    archetype: DARU_COMPAT_ARCHETYPE,
+    tags: [],
     matchScore,
-    matchProbability,
-    characterMatches: charMatches,
-    topCharacterMatches,
-    featuredCharacter,
+    matchProbability: 0,
+    characterMatches: [],
+    topCharacterMatches: [],
+    featuredCharacter: null,
+    matchedCharacter,
+    daruCharacterMatches,
+    daruTraitScores: normalizeUserTraitScores(answerProfile.traitScores, questions),
+  }
+}
+
+function buildDaruAnswerProfile({
+  answers,
+  questions,
+}: {
+  answers: number[]
+  questions: Question[]
+}): DaruAnswerProfile {
+  const rawScores: Record<DimensionPair, number> = {
+    'E_I': 0, 'S_N': 0, 'T_F': 0, 'J_P': 0,
+  }
+  const directionalMaxScores: DirectionalMax = {
+    'E_I': { positive: 0, negative: 0 },
+    'S_N': { positive: 0, negative: 0 },
+    'T_F': { positive: 0, negative: 0 },
+    'J_P': { positive: 0, negative: 0 },
+  }
+  const traitScores = createEmptyTraitScores()
+
+  questions.forEach((question, index) => {
+    const answer = answers[index]
+    if (!isAnsweredValue(answer)) return
+
+    const selectedOption = question.options?.[answer]
+    addTraitScores(traitScores, selectedOption?.traitScores)
+    const optionDimensionScores = selectedOption?.dimensionScores
+    const dimensionWeights = optionDimensionScores ?? (
+      question.dimension && question.sign
+        ? { [question.dimension]: question.sign }
+        : {}
+    )
+
+    if (optionDimensionScores) {
+      addOptionDirectionalMax(question, directionalMaxScores)
+    }
+
+    for (const pair in dimensionWeights) {
+      const dimension = pair as DimensionPair
+      const weight = dimensionWeights[dimension] ?? 0
+      if (weight === 0) continue
+
+      if (optionDimensionScores) {
+        rawScores[dimension] += weight
+      } else {
+        rawScores[dimension] += answer * weight
+        if (weight > 0) {
+          directionalMaxScores[dimension].positive += 3 * weight
+        } else {
+          directionalMaxScores[dimension].negative += 3 * Math.abs(weight)
+        }
+      }
+    }
+  })
+
+  const scores = {} as Record<DimensionPair, DimensionScore>
+  let mbtiCode = ''
+
+  for (const pair in DIMENSION_LETTERS) {
+    const dimension = pair as DimensionPair
+    const score = normalizeDimensionScore(rawScores[dimension], directionalMaxScores[dimension])
+    const [posLetter, negLetter] = DIMENSION_LETTERS[dimension]
+    const dominant = score >= 0 ? posLetter : negLetter
+    const percentage = Math.round(50 + (Math.min(1, Math.abs(score)) * 50))
+
+    scores[dimension] = { pair: dimension, score, dominant, percentage }
+    mbtiCode += dominant
+  }
+
+  return {
+    scores,
+    rawDimensionScores: { ...rawScores },
+    mbtiCode,
+    traitScores,
   }
 }
 
@@ -213,6 +317,7 @@ function buildAnswerProfile({
   }
   const archetypeRaw = createEmptyArchetypeAccumulator()
   const userVector = createEmptyUserVector()
+  const traitScores = createEmptyTraitScores()
   const archetypeMap = new Map(archetypes.map((item) => [item.id, item]))
 
   questions.forEach((question, index) => {
@@ -221,9 +326,19 @@ function buildAnswerProfile({
       return
     }
 
-    const dimensionWeights = ENABLE_DIMENSION_WEIGHT_OVERRIDE
-      ? (DIMENSION_SCORE_WEIGHTS[question.id] ?? { [question.dimension]: question.sign })
-      : { [question.dimension]: question.sign }
+    const selectedOption = question.options?.[answer]
+    addTraitScores(traitScores, selectedOption?.traitScores)
+    const optionDimensionScores = selectedOption?.dimensionScores
+    const dimensionWeights = optionDimensionScores ?? (
+      question.dimension && question.sign
+        ? { [question.dimension]: question.sign }
+        : {}
+    )
+
+    if (optionDimensionScores) {
+      addOptionDirectionalMax(question, directionalMaxScores)
+    }
+
     for (const pair in dimensionWeights) {
       const dimension = pair as DimensionPair
       const weight = dimensionWeights[dimension] ?? 0
@@ -231,15 +346,27 @@ function buildAnswerProfile({
         continue
       }
 
-      rawScores[dimension] += answer * weight
-      if (weight > 0) {
-        directionalMaxScores[dimension].positive += 3 * weight
+      if (optionDimensionScores) {
+        rawScores[dimension] += weight
       } else {
-        directionalMaxScores[dimension].negative += 3 * Math.abs(weight)
+        rawScores[dimension] += answer * weight
+        if (weight > 0) {
+          directionalMaxScores[dimension].positive += 3 * weight
+        } else {
+          directionalMaxScores[dimension].negative += 3 * Math.abs(weight)
+        }
       }
     }
 
-    const normalizedWeights = normalizeQuestionWeights(question.weights ?? QUESTION_WEIGHT_FALLBACKS[question.dimension])
+    const archetypeWeights = question.weights ?? (
+      question.dimension ? QUESTION_WEIGHT_FALLBACKS[question.dimension] : null
+    )
+
+    if (!archetypeWeights) {
+      return
+    }
+
+    const normalizedWeights = normalizeQuestionWeights(archetypeWeights)
 
     for (const role of Object.keys(normalizedWeights) as QuestionArchetypeWeightId[]) {
       const value = normalizedWeights[role] ?? 0
@@ -280,9 +407,11 @@ function buildAnswerProfile({
 
   return {
     scores,
+    rawDimensionScores: { ...rawScores },
     mbtiCode,
     archetypeRaw,
     userVector,
+    traitScores,
     matchedArchetype: pickMatchedArchetype(archetypes, archetypeRaw, mbtiCode),
   }
 }
@@ -301,8 +430,41 @@ function createEmptyUserVector(): UserVector {
   }, {} as UserVector)
 }
 
+function createEmptyTraitScores(): TraitScores {
+  return {}
+}
+
+function addTraitScores(target: TraitScores, scores: TraitScores | undefined) {
+  if (!scores) return
+
+  for (const [trait, score] of Object.entries(scores)) {
+    target[trait] = (target[trait] ?? 0) + score
+  }
+}
+
+function addOptionDirectionalMax(question: Question, directionalMaxScores: DirectionalMax) {
+  const optionScores = question.options?.map((option) => option.dimensionScores ?? {}) ?? []
+
+  for (const pair in DIMENSION_LETTERS) {
+    const dimension = pair as DimensionPair
+    const scores = optionScores
+      .map((scoresByDimension) => scoresByDimension[dimension] ?? 0)
+      .filter((score) => score !== 0)
+
+    if (!scores.length) {
+      continue
+    }
+
+    const positiveMax = Math.max(0, ...scores)
+    const negativeMax = Math.max(0, ...scores.map((score) => Math.abs(Math.min(0, score))))
+
+    directionalMaxScores[dimension].positive += positiveMax
+    directionalMaxScores[dimension].negative += negativeMax
+  }
+}
+
 function isAnsweredValue(value: number) {
-  return value >= -3 && value <= 3
+  return Number.isInteger(value) && value >= 0 && value <= 3
 }
 
 function normalizeDimensionScore(
@@ -334,6 +496,211 @@ function normalizeQuestionWeights(weights: Partial<Record<QuestionArchetypeWeigh
   return Object.fromEntries(
     Object.entries(centered).map(([key, value]) => [key, value / norm])
   ) as Record<QuestionArchetypeWeightId, number>
+}
+
+function rankDaruCharacters({
+  answers,
+  questions,
+  scores,
+  traitScores,
+}: {
+  answers: number[]
+  questions: Question[]
+  scores: Record<DimensionPair, DimensionScore>
+  traitScores: TraitScores
+}): DaruCharacterMatchResult[] {
+  const normalizedUserTraits = normalizeUserTraitScores(traitScores, questions)
+
+  return DARU_PROFILES
+    .map((character) => {
+      const mbtiScore = clampScore(scoreMbti(character.mbti, scores) * 100)
+      const traitScore = scoreDaruTraits(normalizedUserTraits, character.traits)
+      const tendencyScore = scoreDaruTendencies(character.id, answers, questions)
+      const totalScore = clampScore(
+        mbtiScore * DARU_MBTI_WEIGHT +
+        traitScore * DARU_TRAIT_WEIGHT +
+        tendencyScore * DARU_TENDENCY_WEIGHT
+      )
+
+      return {
+        character,
+        mbtiScore,
+        traitScore,
+        tendencyScore,
+        totalScore,
+      }
+    })
+    .sort((left, right) => {
+      const totalDelta = right.totalScore - left.totalScore
+      if (Math.abs(totalDelta) > 0.001) {
+        return totalDelta
+      }
+
+      return left.character.name.localeCompare(right.character.name, 'zh-Hans-CN')
+    })
+}
+
+function normalizeUserTraitScores(traitScores: TraitScores, questions: Question[]) {
+  const ranges = buildTraitRanges(questions)
+  const traitNames = new Set([
+    ...Object.keys(ranges),
+    ...Object.keys(traitScores),
+    ...DARU_PROFILES.flatMap((character) => Object.keys(character.traits)),
+  ])
+  const normalized: TraitScores = {}
+
+  for (const trait of traitNames) {
+    const range = ranges[trait]
+    if (!range || range.max <= range.min) {
+      normalized[trait] = 3
+      continue
+    }
+
+    const raw = traitScores[trait] ?? 0
+    normalized[trait] = clamp(1 + ((raw - range.min) / (range.max - range.min)) * 4, 1, 5)
+  }
+
+  return normalized
+}
+
+function buildTraitRanges(questions: Question[]) {
+  const ranges: Record<string, { min: number; max: number }> = {}
+
+  for (const question of questions) {
+    const options = question.options ?? []
+    const traitNames = new Set(options.flatMap((option) => Object.keys(option.traitScores ?? {})))
+
+    for (const trait of traitNames) {
+      const scores = options.map((option) => option.traitScores?.[trait] ?? 0)
+      const min = Math.min(...scores)
+      const max = Math.max(...scores)
+
+      ranges[trait] = {
+        min: (ranges[trait]?.min ?? 0) + min,
+        max: (ranges[trait]?.max ?? 0) + max,
+      }
+    }
+  }
+
+  return ranges
+}
+
+function scoreDaruTraits(userTraits: TraitScores, characterTraits: TraitScores) {
+  const traitNames = Object.keys(characterTraits)
+  if (!traitNames.length) {
+    return 50
+  }
+
+  const directionScore = scoreDaruTraitDirection(userTraits, characterTraits, traitNames)
+  const salienceScore = scoreDaruTraitSalience(userTraits, characterTraits, traitNames)
+  const distanceScore = scoreDaruTraitDistance(userTraits, characterTraits, traitNames)
+
+  return clampScore(
+    directionScore * 0.5 +
+    salienceScore * 0.3 +
+    distanceScore * 0.2
+  )
+}
+
+// Scores whether user and character traits point to the same side of the midpoint.
+// Traits close to the midpoint are down-weighted so neutral dimensions do not dominate.
+function scoreDaruTraitDirection(userTraits: TraitScores, characterTraits: TraitScores, traitNames: string[]) {
+  let weightedScore = 0
+  let weightTotal = 0
+
+  for (const trait of traitNames) {
+    const userDelta = (userTraits[trait] ?? 3) - 3
+    const characterDelta = characterTraits[trait] - 3
+    const userStrength = Math.abs(userDelta)
+    const characterStrength = Math.abs(characterDelta)
+    const weight = Math.max(0.1, Math.min(userStrength, characterStrength) / 2)
+
+    let score = 50
+    if (userStrength >= 0.25 && characterStrength >= 0.25) {
+      score = Math.sign(userDelta) === Math.sign(characterDelta) ? 100 : 0
+    }
+
+    weightedScore += score * weight
+    weightTotal += weight
+  }
+
+  return weightTotal ? clampScore(weightedScore / weightTotal) : 50
+}
+
+// Rewards matching the character's salient traits. A character trait near 3 has
+// little weight; an extreme trait needs the user to match both direction and strength.
+function scoreDaruTraitSalience(userTraits: TraitScores, characterTraits: TraitScores, traitNames: string[]) {
+  let weightedScore = 0
+  let weightTotal = 0
+
+  for (const trait of traitNames) {
+    const userDelta = (userTraits[trait] ?? 3) - 3
+    const characterDelta = characterTraits[trait] - 3
+    const salience = Math.abs(characterDelta)
+    if (salience <= 0.001) {
+      continue
+    }
+
+    const sameDirection = Math.sign(userDelta) === Math.sign(characterDelta)
+    const strengthDistance = Math.abs(Math.abs(userDelta) - salience)
+    const score = sameDirection ? (1 - Math.min(1, strengthDistance / 2)) * 100 : 0
+
+    weightedScore += score * salience
+    weightTotal += salience
+  }
+
+  return weightTotal ? clampScore(weightedScore / weightTotal) : 50
+}
+
+// Keeps the old six-dimensional distance similarity as a small stabilizer.
+// It is still normalized to 0..100, but it no longer drives the final traitScore.
+function scoreDaruTraitDistance(userTraits: TraitScores, characterTraits: TraitScores, traitNames: string[]) {
+  const averageDistance = traitNames.reduce((sum, trait) => {
+    return sum + Math.abs((userTraits[trait] ?? 3) - characterTraits[trait])
+  }, 0) / traitNames.length
+
+  return clampScore((1 - averageDistance / 4) * 100)
+}
+
+function scoreDaruTendencies(characterId: string, answers: number[], questions: Question[]) {
+  const tendencies = DARU_TENDENCIES[characterId]
+  if (!tendencies) {
+    return 50
+  }
+
+  let matchedWeight = 0
+  let maxWeight = 0
+
+  questions.forEach((question, questionIndex) => {
+    const preferences = tendencies[question.id]
+    if (!preferences?.length) {
+      return
+    }
+
+    const selectedOption = question.options?.[answers[questionIndex]]
+    if (!selectedOption) {
+      return
+    }
+
+    maxWeight += Math.max(...preferences.map((preference) => preference.weight))
+    matchedWeight += preferences
+      .filter((preference) => preference.optionId === selectedOption.id)
+      .reduce((sum, preference) => sum + preference.weight, 0)
+  })
+
+  if (maxWeight <= 0) {
+    return 50
+  }
+
+  return clampScore((matchedWeight / maxWeight) * 100)
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value))
+}
+
+function clampScore(value: number) {
+  return Math.round(clamp(value, 0, 100) * 100) / 100
 }
 
 function pickMatchedArchetype(
@@ -629,7 +996,7 @@ function getQuestionIndexById(questionId: string) {
   return Number.parseInt(questionId.replace(/^q/i, ''), 10) - 1
 }
 
-function collectLeadingMatches(rankings: RankedCharacter[]) {
+export function collectLeadingMatches(rankings: RankedCharacter[]) {
   if (!rankings.length) {
     return []
   }
@@ -806,18 +1173,18 @@ export function createDebugQuizResult({
     archetype: matchedArchetype,
     tags: [matchedArchetype.narrativeRole, ...matchedArchetype.tags].slice(0, 6),
     matchScore: 92,
-    matchProbability: getCharacterPopulationProbability(character.id),
+    matchProbability: 0,
     characterMatches: [character],
     topCharacterMatches: [{
       character,
       score: 92,
-      probability: getCharacterPopulationProbability(character.id),
+      probability: 0,
     }],
     featuredCharacter: character,
   }
 }
 
-function calculateCharacterMatchScore(topMatch?: Pick<RankedCharacter, 'total'> | null) {
+export function calculateCharacterMatchScore(topMatch?: Pick<RankedCharacter, 'total'> | null) {
   if (!topMatch) {
     return 60
   }

@@ -64,6 +64,9 @@ export function hydrateQuizRecord(record: QuizRecord | null): QuizRecord | null 
 
   return {
     ...record,
-    result: hydrateQuizResult(record.result) as QuizResult,
+    result: {
+      ...(hydrateQuizResult(record.result) as QuizResult),
+      submissionId: record.result.submissionId ?? record.submissionId,
+    },
   }
 }

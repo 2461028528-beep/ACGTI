@@ -1,0 +1,30 @@
+大如传题库转换脚本使用说明
+
+一、把两个文件复制到 ACGTI 项目根目录
+1. convert-daru-data.mjs
+2. 大如传题库.xlsx
+
+根目录就是 package.json 所在的文件夹，例如：
+C:\Users\九州\ACGTI
+
+二、在 Cursor 终端运行
+npm install xlsx
+
+三、执行转换
+node convert-daru-data.mjs "大如传题库.xlsx"
+
+四、成功后会自动生成或覆盖
+src/data/questions.json
+src/data/daruCharacterTendencies.json
+src/data/daruCharacterProfiles.json
+
+五、每次修改 Excel 后，只需重新执行
+node convert-daru-data.mjs "大如传题库.xlsx"
+
+注意
+1. Excel 必须保留三个工作表名称：题库、角色倾向表、角色画像表。
+2. 每道题必须由 1 行题干、4 行选项组成，题目之间可以有空行。
+3. MBTI 赋分格式为 E+1、I+2、N+1 等。
+4. 六项角色维度赋分格式为 体面+2、心机-1 等。
+5. 角色倾向格式为 A+2 或 A+2/B+1。
+6. 此脚本只负责把 Excel 转为 JSON。原项目默认是七级量表，下一步还要修改 QuestionCard.vue、quiz.ts 和 quizEngine.ts，使网页读取四选一选项及新的角色评分。

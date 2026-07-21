@@ -4,6 +4,9 @@ import characters from '../data/characters.json'
 
 const QUESTION_COUNT = String(questions.length)
 const CHARACTER_COUNT = String(characters.length)
+const questionTexts = questions.map((question) =>
+  ('text' in question ? question.text : question.prompt) ?? ''
+)
 
 export const localeLabels: Record<AppLocale, string> = {
   'zh-CN': '简体中文',
@@ -161,7 +164,7 @@ export const messages = {
       dimensions: ['外向 / 内向', '实感 / 直觉', '理性 / 情感', '判断 / 感知'],
     },
     quiz: {
-        questions: questions.map((q) => q.text),
+        questions: questionTexts,
       heroTitle: '免费性格测试',
       steps: [
         ['STEP 1', '完成测试', '做真实的自己并诚实回答，以发现你的性格类型。'],

@@ -1,0 +1,642 @@
+{
+  "如懿": {
+    "q1": [
+      {
+        "optionId": "a",
+        "weight": 2
+      },
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q2": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q3": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q4": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q5": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q6": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q7": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q9": [
+      {
+        "optionId": "a",
+        "weight": 2
+      },
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q10": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q11": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q12": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q13": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q14": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q16": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ]
+  },
+  "皇帝": {
+    "q1": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q2": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q5": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q8": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q9": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q14": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q15": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ]
+  },
+  "海兰": {
+    "q1": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q2": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q3": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q4": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q5": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ],
+    "q6": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ],
+    "q7": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q8": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ],
+    "q9": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q10": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ],
+    "q12": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q13": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q14": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ],
+    "q15": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ]
+  },
+  "魏嬿婉": {
+    "q2": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q3": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q4": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q5": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q6": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q7": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q8": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q9": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q10": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q11": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q12": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q13": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q14": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q15": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q16": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ]
+  },
+  "富察琅嬅": {
+    "q1": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q2": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q3": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ],
+    "q5": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q6": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q8": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q9": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q10": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q12": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q15": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q16": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ]
+  },
+  "金玉妍": {
+    "q4": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q5": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q7": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q8": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q10": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q11": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q12": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q13": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q15": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ],
+    "q16": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ]
+  },
+  "高烯月": {
+    "q1": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q3": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q5": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q6": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q9": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q10": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q11": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q13": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ]
+  },
+  "苏绿筠": {
+    "q1": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q2": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q3": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q4": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q6": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q7": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q8": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q10": [
+      {
+        "optionId": "a",
+        "weight": 2
+      }
+    ],
+    "q12": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q14": [
+      {
+        "optionId": "d",
+        "weight": 2
+      }
+    ],
+    "q16": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ]
+  },
+  "凌云彻": {
+    "q5": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q6": [
+      {
+        "optionId": "b",
+        "weight": 1
+      }
+    ],
+    "q8": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q9": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ]
+  },
+  "进忠": {
+    "q2": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q3": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q4": [
+      {
+        "optionId": "b",
+        "weight": 2
+      }
+    ],
+    "q6": [
+      {
+        "optionId": "d",
+        "weight": 1
+      }
+    ],
+    "q7": [
+      {
+        "optionId": "a",
+        "weight": 1
+      }
+    ],
+    "q8": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ],
+    "q10": [
+      {
+        "optionId": "c",
+        "weight": 1
+      }
+    ],
+    "q15": [
+      {
+        "optionId": "c",
+        "weight": 2
+      }
+    ]
+  }
+}

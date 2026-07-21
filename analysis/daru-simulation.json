@@ -1,0 +1,1715 @@
+{
+  "metadata": {
+    "runs": 100000,
+    "seed": 20260710,
+    "questionCount": 16,
+    "generatedAt": "2026-07-21T09:37:37.984Z"
+  },
+  "mbtiDistribution": [
+    {
+      "type": "ESTJ",
+      "count": 20213,
+      "percent": 20.213,
+      "flags": [
+        "HIGH_OVER_15_PERCENT"
+      ]
+    },
+    {
+      "type": "ISTJ",
+      "count": 14541,
+      "percent": 14.541,
+      "flags": []
+    },
+    {
+      "type": "INFP",
+      "count": 12042,
+      "percent": 12.042,
+      "flags": []
+    },
+    {
+      "type": "ENFP",
+      "count": 11709,
+      "percent": 11.709,
+      "flags": []
+    },
+    {
+      "type": "ESFP",
+      "count": 6441,
+      "percent": 6.441,
+      "flags": []
+    },
+    {
+      "type": "ESFJ",
+      "count": 5788,
+      "percent": 5.788,
+      "flags": []
+    },
+    {
+      "type": "ESTP",
+      "count": 5613,
+      "percent": 5.613,
+      "flags": []
+    },
+    {
+      "type": "ISFP",
+      "count": 5332,
+      "percent": 5.332,
+      "flags": []
+    },
+    {
+      "type": "ISFJ",
+      "count": 4824,
+      "percent": 4.824,
+      "flags": []
+    },
+    {
+      "type": "ISTP",
+      "count": 4209,
+      "percent": 4.209,
+      "flags": []
+    },
+    {
+      "type": "ENFJ",
+      "count": 2206,
+      "percent": 2.206,
+      "flags": []
+    },
+    {
+      "type": "INFJ",
+      "count": 2039,
+      "percent": 2.039,
+      "flags": []
+    },
+    {
+      "type": "ENTP",
+      "count": 1840,
+      "percent": 1.84,
+      "flags": []
+    },
+    {
+      "type": "INTP",
+      "count": 1578,
+      "percent": 1.578,
+      "flags": []
+    },
+    {
+      "type": "ENTJ",
+      "count": 885,
+      "percent": 0.885,
+      "flags": [
+        "LOW_UNDER_1_PERCENT"
+      ]
+    },
+    {
+      "type": "INTJ",
+      "count": 740,
+      "percent": 0.74,
+      "flags": [
+        "LOW_UNDER_1_PERCENT"
+      ]
+    }
+  ],
+  "dimensionDistribution": {
+    "E_I": {
+      "poles": {
+        "E": {
+          "count": 54695,
+          "percent": 54.695
+        },
+        "I": {
+          "count": 45305,
+          "percent": 45.305
+        }
+      },
+      "rawScore": {
+        "mean": 0.2176,
+        "stddev": 5.87,
+        "min": -22,
+        "max": 23
+      },
+      "zero": {
+        "count": 6718,
+        "percent": 6.718
+      },
+      "flags": []
+    },
+    "S_N": {
+      "poles": {
+        "S": {
+          "count": 66961,
+          "percent": 66.961
+        },
+        "N": {
+          "count": 33039,
+          "percent": 33.039
+        }
+      },
+      "rawScore": {
+        "mean": 2.1977,
+        "stddev": 6.1981,
+        "min": -25,
+        "max": 25
+      },
+      "zero": {
+        "count": 5863,
+        "percent": 5.863
+      },
+      "flags": [
+        "S_OVER_65_PERCENT"
+      ]
+    },
+    "T_F": {
+      "poles": {
+        "T": {
+          "count": 49619,
+          "percent": 49.619
+        },
+        "F": {
+          "count": 50381,
+          "percent": 50.381
+        }
+      },
+      "rawScore": {
+        "mean": -0.5401,
+        "stddev": 6.1992,
+        "min": -29,
+        "max": 27
+      },
+      "zero": {
+        "count": 6226,
+        "percent": 6.226
+      },
+      "flags": []
+    },
+    "J_P": {
+      "poles": {
+        "J": {
+          "count": 51236,
+          "percent": 51.236
+        },
+        "P": {
+          "count": 48764,
+          "percent": 48.764
+        }
+      },
+      "rawScore": {
+        "mean": -0.2809,
+        "stddev": 6.2723,
+        "min": -25,
+        "max": 24
+      },
+      "zero": {
+        "count": 6390,
+        "percent": 6.39
+      },
+      "flags": []
+    }
+  },
+  "characterDistribution": [
+    {
+      "name": "苏绿筠",
+      "count": 15623,
+      "percent": 15.623,
+      "flags": []
+    },
+    {
+      "name": "富察琅嬅",
+      "count": 14496,
+      "percent": 14.496,
+      "flags": []
+    },
+    {
+      "name": "魏嬿婉",
+      "count": 11774,
+      "percent": 11.774,
+      "flags": []
+    },
+    {
+      "name": "高烯月",
+      "count": 11706,
+      "percent": 11.706,
+      "flags": []
+    },
+    {
+      "name": "海兰",
+      "count": 11238,
+      "percent": 11.238,
+      "flags": []
+    },
+    {
+      "name": "如懿",
+      "count": 10855,
+      "percent": 10.855,
+      "flags": []
+    },
+    {
+      "name": "凌云彻",
+      "count": 10478,
+      "percent": 10.478,
+      "flags": []
+    },
+    {
+      "name": "进忠",
+      "count": 7656,
+      "percent": 7.656,
+      "flags": []
+    },
+    {
+      "name": "金玉妍",
+      "count": 3516,
+      "percent": 3.516,
+      "flags": []
+    },
+    {
+      "name": "皇帝",
+      "count": 2658,
+      "percent": 2.658,
+      "flags": []
+    }
+  ],
+  "competition": {
+    "firstSecondGap": {
+      "mean": 4.5488,
+      "median": 3.56,
+      "min": 0,
+      "max": 30.66,
+      "under2Percent": 31.103,
+      "under5Percent": 63.65,
+      "under10Percent": 90.204
+    },
+    "top3Distribution": [
+      {
+        "name": "苏绿筠",
+        "count": 48082,
+        "percent": 48.082
+      },
+      {
+        "name": "海兰",
+        "count": 38201,
+        "percent": 38.201
+      },
+      {
+        "name": "富察琅嬅",
+        "count": 33048,
+        "percent": 33.048
+      },
+      {
+        "name": "高烯月",
+        "count": 32226,
+        "percent": 32.226
+      },
+      {
+        "name": "魏嬿婉",
+        "count": 31196,
+        "percent": 31.196
+      },
+      {
+        "name": "进忠",
+        "count": 29877,
+        "percent": 29.877
+      },
+      {
+        "name": "凌云彻",
+        "count": 28967,
+        "percent": 28.967
+      },
+      {
+        "name": "如懿",
+        "count": 28261,
+        "percent": 28.261
+      },
+      {
+        "name": "金玉妍",
+        "count": 15947,
+        "percent": 15.947
+      },
+      {
+        "name": "皇帝",
+        "count": 14177,
+        "percent": 14.177
+      }
+    ]
+  },
+  "extremeCases": [
+    {
+      "name": "all_A",
+      "answers": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "mbtiCode": "ISTP",
+      "rawDimensionScores": {
+        "E_I": -8,
+        "S_N": 5,
+        "T_F": 0,
+        "J_P": -4
+      },
+      "matchedCharacter": {
+        "id": "海兰",
+        "name": "海兰",
+        "mbti": "INTJ",
+        "traits": {
+          "体面": 3,
+          "少年郎": 1,
+          "安分": 5,
+          "道德资本": 2,
+          "出身": 2,
+          "心机": 5
+        }
+      },
+      "top3": [
+        {
+          "id": "海兰",
+          "name": "海兰",
+          "totalScore": 51,
+          "mbtiScore": 50,
+          "traitScore": 60.34,
+          "tendencyScore": 33.33
+        },
+        {
+          "id": "苏绿筠",
+          "name": "苏绿筠",
+          "totalScore": 48.93,
+          "mbtiScore": 47,
+          "traitScore": 67.69,
+          "tendencyScore": 13.33
+        },
+        {
+          "id": "凌云彻",
+          "name": "凌云彻",
+          "totalScore": 47.16,
+          "mbtiScore": 54,
+          "traitScore": 57.32,
+          "tendencyScore": 20
+        }
+      ]
+    },
+    {
+      "name": "all_B",
+      "answers": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "mbtiCode": "ENFP",
+      "rawDimensionScores": {
+        "E_I": 5,
+        "S_N": -5,
+        "T_F": -9,
+        "J_P": -5
+      },
+      "matchedCharacter": {
+        "id": "皇帝",
+        "name": "皇帝",
+        "mbti": "ENTJ",
+        "traits": {
+          "体面": 3,
+          "少年郎": 5,
+          "安分": 2,
+          "道德资本": 2,
+          "出身": 5,
+          "心机": 3
+        }
+      },
+      "top3": [
+        {
+          "id": "皇帝",
+          "name": "皇帝",
+          "totalScore": 52.46,
+          "mbtiScore": 48.5,
+          "traitScore": 55.66,
+          "tendencyScore": 50
+        },
+        {
+          "id": "凌云彻",
+          "name": "凌云彻",
+          "totalScore": 51.76,
+          "mbtiScore": 40.5,
+          "traitScore": 53.26,
+          "tendencyScore": 60
+        },
+        {
+          "id": "高烯月",
+          "name": "高烯月",
+          "totalScore": 47.93,
+          "mbtiScore": 55.5,
+          "traitScore": 45.39,
+          "tendencyScore": 45.45
+        }
+      ]
+    },
+    {
+      "name": "all_C",
+      "answers": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "mbtiCode": "ESTJ",
+      "rawDimensionScores": {
+        "E_I": 7,
+        "S_N": 7,
+        "T_F": 9,
+        "J_P": 13
+      },
+      "matchedCharacter": {
+        "id": "富察琅嬅",
+        "name": "富察琅嬅",
+        "mbti": "ESFJ",
+        "traits": {
+          "体面": 4,
+          "少年郎": 1,
+          "安分": 4,
+          "道德资本": 2,
+          "出身": 5,
+          "心机": 5
+        }
+      },
+      "top3": [
+        {
+          "id": "富察琅嬅",
+          "name": "富察琅嬅",
+          "totalScore": 62.36,
+          "mbtiScore": 57.25,
+          "traitScore": 78.45,
+          "tendencyScore": 35.29
+        },
+        {
+          "id": "进忠",
+          "name": "进忠",
+          "totalScore": 49.45,
+          "mbtiScore": 51.25,
+          "traitScore": 39.93,
+          "tendencyScore": 66.67
+        },
+        {
+          "id": "金玉妍",
+          "name": "金玉妍",
+          "totalScore": 48.48,
+          "mbtiScore": 54.75,
+          "traitScore": 46.25,
+          "tendencyScore": 46.67
+        }
+      ]
+    },
+    {
+      "name": "all_D",
+      "answers": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "mbtiCode": "ISFP",
+      "rawDimensionScores": {
+        "E_I": -3,
+        "S_N": 2,
+        "T_F": -2,
+        "J_P": -5
+      },
+      "matchedCharacter": {
+        "id": "苏绿筠",
+        "name": "苏绿筠",
+        "mbti": "ESFJ",
+        "traits": {
+          "体面": 3,
+          "少年郎": 2,
+          "安分": 5,
+          "道德资本": 3,
+          "出身": 3,
+          "心机": 1
+        }
+      },
+      "top3": [
+        {
+          "id": "苏绿筠",
+          "name": "苏绿筠",
+          "totalScore": 52.06,
+          "mbtiScore": 48.25,
+          "traitScore": 56.66,
+          "tendencyScore": 46.67
+        },
+        {
+          "id": "高烯月",
+          "name": "高烯月",
+          "totalScore": 49.8,
+          "mbtiScore": 52.25,
+          "traitScore": 55.29,
+          "tendencyScore": 36.36
+        },
+        {
+          "id": "海兰",
+          "name": "海兰",
+          "totalScore": 47.72,
+          "mbtiScore": 47.75,
+          "traitScore": 47.76,
+          "tendencyScore": 47.62
+        }
+      ]
+    },
+    {
+      "name": "cycle_A_B_C_D",
+      "answers": [
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3,
+        0,
+        1,
+        2,
+        3
+      ],
+      "mbtiCode": "INTP",
+      "rawDimensionScores": {
+        "E_I": -9,
+        "S_N": -3,
+        "T_F": 3,
+        "J_P": -13
+      },
+      "matchedCharacter": {
+        "id": "如懿",
+        "name": "如懿",
+        "mbti": "INFP",
+        "traits": {
+          "体面": 5,
+          "少年郎": 5,
+          "安分": 4,
+          "道德资本": 5,
+          "出身": 4,
+          "心机": 1
+        }
+      },
+      "top3": [
+        {
+          "id": "如懿",
+          "name": "如懿",
+          "totalScore": 48.71,
+          "mbtiScore": 59.25,
+          "traitScore": 51.12,
+          "tendencyScore": 33.33
+        },
+        {
+          "id": "凌云彻",
+          "name": "凌云彻",
+          "totalScore": 47.47,
+          "mbtiScore": 48.75,
+          "traitScore": 50.57,
+          "tendencyScore": 40
+        },
+        {
+          "id": "苏绿筠",
+          "name": "苏绿筠",
+          "totalScore": 42.86,
+          "mbtiScore": 38.25,
+          "traitScore": 63.25,
+          "tendencyScore": 6.67
+        }
+      ]
+    },
+    {
+      "name": "seeded_random_0_1_2_3",
+      "answers": [
+        0,
+        2,
+        3,
+        1,
+        1,
+        2,
+        3,
+        3,
+        1,
+        1,
+        2,
+        3,
+        1,
+        0,
+        0,
+        2
+      ],
+      "mbtiCode": "ISFP",
+      "rawDimensionScores": {
+        "E_I": -2,
+        "S_N": 4,
+        "T_F": -3,
+        "J_P": -1
+      },
+      "matchedCharacter": {
+        "id": "进忠",
+        "name": "进忠",
+        "mbti": "ENFJ",
+        "traits": {
+          "体面": 1,
+          "少年郎": 1,
+          "安分": 1,
+          "道德资本": 1,
+          "出身": 1,
+          "心机": 5
+        }
+      },
+      "top3": [
+        {
+          "id": "进忠",
+          "name": "进忠",
+          "totalScore": 50.13,
+          "mbtiScore": 48.25,
+          "traitScore": 59.46,
+          "tendencyScore": 33.33
+        },
+        {
+          "id": "苏绿筠",
+          "name": "苏绿筠",
+          "totalScore": 48.45,
+          "mbtiScore": 51.75,
+          "traitScore": 51.02,
+          "tendencyScore": 40
+        },
+        {
+          "id": "富察琅嬅",
+          "name": "富察琅嬅",
+          "totalScore": 47.85,
+          "mbtiScore": 51.75,
+          "traitScore": 52.18,
+          "tendencyScore": 35.29
+        }
+      ]
+    }
+  ],
+  "sampleResults": [
+    {
+      "answers": [
+        1,
+        0,
+        3,
+        2,
+        1,
+        3,
+        3,
+        3,
+        0,
+        2,
+        2,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "mbtiCode": "ISTJ",
+      "rawDimensionScores": {
+        "E_I": -2,
+        "S_N": 4,
+        "T_F": 2,
+        "J_P": 2
+      },
+      "matchedCharacter": {
+        "id": "魏嬿婉",
+        "name": "魏嬿婉",
+        "mbti": "ESTJ",
+        "traits": {
+          "体面": 1,
+          "少年郎": 3,
+          "安分": 1,
+          "道德资本": 1,
+          "出身": 2,
+          "心机": 5
+        }
+      },
+      "top3": [
+        {
+          "character": {
+            "id": "魏嬿婉",
+            "name": "魏嬿婉",
+            "mbti": "ESTJ",
+            "traits": {
+              "体面": 1,
+              "少年郎": 3,
+              "安分": 1,
+              "道德资本": 1,
+              "出身": 2,
+              "心机": 5
+            }
+          },
+          "mbtiScore": 52.5,
+          "traitScore": 54.46,
+          "tendencyScore": 42.86,
+          "totalScore": 51.07
+        },
+        {
+          "character": {
+            "id": "进忠",
+            "name": "进忠",
+            "mbti": "ENFJ",
+            "traits": {
+              "体面": 1,
+              "少年郎": 1,
+              "安分": 1,
+              "道德资本": 1,
+              "出身": 1,
+              "心机": 5
+            }
+          },
+          "mbtiScore": 47.5,
+          "traitScore": 54.37,
+          "tendencyScore": 16.67,
+          "totalScore": 43.23
+        },
+        {
+          "character": {
+            "id": "凌云彻",
+            "name": "凌云彻",
+            "mbti": "ISTJ",
+            "traits": {
+              "体面": 4,
+              "少年郎": 5,
+              "安分": 5,
+              "道德资本": 5,
+              "出身": 2,
+              "心机": 2
+            }
+          },
+          "mbtiScore": 54,
+          "traitScore": 46.76,
+          "tendencyScore": 20,
+          "totalScore": 41.88
+        }
+      ]
+    },
+    {
+      "answers": [
+        1,
+        3,
+        1,
+        3,
+        2,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        0,
+        0,
+        1,
+        0
+      ],
+      "mbtiCode": "ESTP",
+      "rawDimensionScores": {
+        "E_I": 2,
+        "S_N": 3,
+        "T_F": 2,
+        "J_P": -2
+      },
+      "matchedCharacter": {
+        "id": "金玉妍",
+        "name": "金玉妍",
+        "mbti": "ESTP",
+        "traits": {
+          "体面": 2,
+          "少年郎": 4,
+          "安分": 1,
+          "道德资本": 2,
+          "出身": 4,
+          "心机": 5
+        }
+      },
+      "top3": [
+        {
+          "character": {
+            "id": "金玉妍",
+            "name": "金玉妍",
+            "mbti": "ESTP",
+            "traits": {
+              "体面": 2,
+              "少年郎": 4,
+              "安分": 1,
+              "道德资本": 2,
+              "出身": 4,
+              "心机": 5
+            }
+          },
+          "mbtiScore": 53.5,
+          "traitScore": 47.2,
+          "tendencyScore": 60,
+          "totalScore": 51.98
+        },
+        {
+          "character": {
+            "id": "富察琅嬅",
+            "name": "富察琅嬅",
+            "mbti": "ESFJ",
+            "traits": {
+              "体面": 4,
+              "少年郎": 1,
+              "安分": 4,
+              "道德资本": 2,
+              "出身": 5,
+              "心机": 5
+            }
+          },
+          "mbtiScore": 50.5,
+          "traitScore": 61,
+          "tendencyScore": 29.41,
+          "totalScore": 50.48
+        },
+        {
+          "character": {
+            "id": "高烯月",
+            "name": "高烯月",
+            "mbti": "ESFP",
+            "traits": {
+              "体面": 2,
+              "少年郎": 3,
+              "安分": 2,
+              "道德资本": 1,
+              "出身": 4,
+              "心机": 2
+            }
+          },
+          "mbtiScore": 52,
+          "traitScore": 47.65,
+          "tendencyScore": 45.45,
+          "totalScore": 48.19
+        }
+      ]
+    },
+    {
+      "answers": [
+        1,
+        3,
+        1,
+        3,
+        1,
+        1,
+        3,
+        0,
+        3,
+        0,
+        3,
+        2,
+        1,
+        0,
+        3,
+        0
+      ],
+      "mbtiCode": "ESFP",
+      "rawDimensionScores": {
+        "E_I": 1,
+        "S_N": 0,
+        "T_F": -12,
+        "J_P": -13
+      },
+      "matchedCharacter": {
+        "id": "高烯月",
+        "name": "高烯月",
+        "mbti": "ESFP",
+        "traits": {
+          "体面": 2,
+          "少年郎": 3,
+          "安分": 2,
+          "道德资本": 1,
+          "出身": 4,
+          "心机": 2
+        }
+      },
+      "top3": [
+        {
+          "character": {
+            "id": "高烯月",
+            "name": "高烯月",
+            "mbti": "ESFP",
+            "traits": {
+              "体面": 2,
+              "少年郎": 3,
+              "安分": 2,
+              "道德资本": 1,
+              "出身": 4,
+              "心机": 2
+            }
+          },
+          "mbtiScore": 60.5,
+          "traitScore": 56.16,
+          "tendencyScore": 63.64,
+          "totalScore": 59.11
+        },
+        {
+          "character": {
+            "id": "苏绿筠",
+            "name": "苏绿筠",
+            "mbti": "ESFJ",
+            "traits": {
+              "体面": 3,
+              "少年郎": 2,
+              "安分": 5,
+              "道德资本": 3,
+              "出身": 3,
+              "心机": 1
+            }
+          },
+          "mbtiScore": 50,
+          "traitScore": 64.84,
+          "tendencyScore": 40,
+          "totalScore": 54.92
+        },
+        {
+          "character": {
+            "id": "凌云彻",
+            "name": "凌云彻",
+            "mbti": "ISTJ",
+            "traits": {
+              "体面": 4,
+              "少年郎": 5,
+              "安分": 5,
+              "道德资本": 5,
+              "出身": 2,
+              "心机": 2
+            }
+          },
+          "mbtiScore": 39.5,
+          "traitScore": 54.54,
+          "tendencyScore": 20,
+          "totalScore": 42.15
+        }
+      ]
+    },
+    {
+      "answers": [
+        0,
+        0,
+        3,
+        1,
+        3,
+        3,
+        2,
+        1,
+        2,
+        3,
+        1,
+        0,
+        3,
+        2,
+        1,
+        2
+      ],
+      "mbtiCode": "ENFJ",
+      "rawDimensionScores": {
+        "E_I": 5,
+        "S_N": -1,
+        "T_F": -1,
+        "J_P": 5
+      },
+      "matchedCharacter": {
+        "id": "凌云彻",
+        "name": "凌云彻",
+        "mbti": "ISTJ",
+        "traits": {
+          "体面": 4,
+          "少年郎": 5,
+          "安分": 5,
+          "道德资本": 5,
+          "出身": 2,
+          "心机": 2
+        }
+      },
+      "top3": [
+        {
+          "character": {
+            "id": "凌云彻",
+            "name": "凌云彻",
+            "mbti": "ISTJ",
+            "traits": {
+              "体面": 4,
+              "少年郎": 5,
+              "安分": 5,
+              "道德资本": 5,
+              "出身": 2,
+              "心机": 2
+            }
+          },
+          "mbtiScore": 49,
+          "traitScore": 51.97,
+          "tendencyScore": 60,
+          "totalScore": 53.24
+        },
+        {
+          "character": {
+            "id": "魏嬿婉",
+            "name": "魏嬿婉",
+            "mbti": "ESTJ",
+            "traits": {
+              "体面": 1,
+              "少年郎": 3,
+              "安分": 1,
+              "道德资本": 1,
+              "出身": 2,
+              "心机": 5
+            }
+          },
+          "mbtiScore": 53,
+          "traitScore": 44.07,
+          "tendencyScore": 25,
+          "totalScore": 41.54
+        },
+        {
+          "character": {
+            "id": "进忠",
+            "name": "进忠",
+            "mbti": "ENFJ",
+            "traits": {
+              "体面": 1,
+              "少年郎": 1,
+              "安分": 1,
+              "道德资本": 1,
+              "出身": 1,
+              "心机": 5
+            }
+          },
+          "mbtiScore": 55,
+          "traitScore": 40.36,
+          "tendencyScore": 25,
+          "totalScore": 40.18
+        }
+      ]
+    },
+    {
+      "answers": [
+        2,
+        2,
+        3,
+        1,
+        3,
+        2,
+        2,
+        0,
+        1,
+        0,
+        0,
+        3,
+        2,
+        1,
+        0,
+        0
+      ],
+      "mbtiCode": "ISTP",
+      "rawDimensionScores": {
+        "E_I": -4,
+        "S_N": 0,
+        "T_F": 2,
+        "J_P": -4
+      },
+      "matchedCharacter": {
+        "id": "富察琅嬅",
+        "name": "富察琅嬅",
+        "mbti": "ESFJ",
+        "traits": {
+          "体面": 4,
+          "少年郎": 1,
+          "安分": 4,
+          "道德资本": 2,
+          "出身": 5,
+          "心机": 5
+        }
+      },
+      "top3": [
+        {
+          "character": {
+            "id": "富察琅嬅",
+            "name": "富察琅嬅",
+            "mbti": "ESFJ",
+            "traits": {
+              "体面": 4,
+              "少年郎": 1,
+              "安分": 4,
+              "道德资本": 2,
+              "出身": 5,
+              "心机": 5
+            }
+          },
+          "mbtiScore": 46,
+          "traitScore": 64.34,
+          "tendencyScore": 35.29,
+          "totalScore": 52.49
+        },
+        {
+          "character": {
+            "id": "如懿",
+            "name": "如懿",
+            "mbti": "INFP",
+            "traits": {
+              "体面": 5,
+              "少年郎": 5,
+              "安分": 4,
+              "道德资本": 5,
+              "出身": 4,
+              "心机": 1
+            }
+          },
+          "mbtiScore": 52.5,
+          "traitScore": 62.92,
+          "tendencyScore": 29.63,
+          "totalScore": 51.99
+        },
+        {
+          "character": {
+            "id": "皇帝",
+            "name": "皇帝",
+            "mbti": "ENTJ",
+            "traits": {
+              "体面": 3,
+              "少年郎": 5,
+              "安分": 2,
+              "道德资本": 2,
+              "出身": 5,
+              "心机": 3
+            }
+          },
+          "mbtiScore": 47.5,
+          "traitScore": 50.25,
+          "tendencyScore": 41.67,
+          "totalScore": 47.42
+        }
+      ]
+    }
+  ],
+  "biasNotes": {
+    "mbti": [
+      "ESTJ: 20.213% HIGH_OVER_15_PERCENT",
+      "ENTJ: 0.885% LOW_UNDER_1_PERCENT",
+      "INTJ: 0.74% LOW_UNDER_1_PERCENT"
+    ],
+    "dimensions": [
+      "S_N: S_OVER_65_PERCENT"
+    ],
+    "characters": [],
+    "likelySources": [
+      {
+        "dimension": "E_I",
+        "nonZeroQuestionMeans": [
+          {
+            "questionId": "q14",
+            "mean": -1,
+            "spread": 3,
+            "options": [
+              -1,
+              -2,
+              1,
+              -2
+            ]
+          },
+          {
+            "questionId": "q5",
+            "mean": 0.75,
+            "spread": 3,
+            "options": [
+              -1,
+              2,
+              1,
+              1
+            ]
+          },
+          {
+            "questionId": "q9",
+            "mean": 0.75,
+            "spread": 3,
+            "options": [
+              -1,
+              2,
+              1,
+              1
+            ]
+          },
+          {
+            "questionId": "q11",
+            "mean": 0.75,
+            "spread": 3,
+            "options": [
+              1,
+              2,
+              -1,
+              1
+            ]
+          },
+          {
+            "questionId": "q13",
+            "mean": -0.75,
+            "spread": 4,
+            "options": [
+              -1,
+              2,
+              -2,
+              -2
+            ]
+          }
+        ],
+        "widestSpreads": [
+          {
+            "questionId": "q2",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              1,
+              -1,
+              2,
+              -2
+            ]
+          },
+          {
+            "questionId": "q3",
+            "mean": -0.5,
+            "spread": 4,
+            "options": [
+              -1,
+              2,
+              -2,
+              -1
+            ]
+          },
+          {
+            "questionId": "q4",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              2,
+              -1,
+              1,
+              -2
+            ]
+          },
+          {
+            "questionId": "q6",
+            "mean": 0.5,
+            "spread": 4,
+            "options": [
+              -2,
+              1,
+              1,
+              2
+            ]
+          },
+          {
+            "questionId": "q7",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              1,
+              2,
+              -1,
+              -2
+            ]
+          }
+        ]
+      },
+      {
+        "dimension": "S_N",
+        "nonZeroQuestionMeans": [
+          {
+            "questionId": "q6",
+            "mean": 0.75,
+            "spread": 4,
+            "options": [
+              -2,
+              2,
+              1,
+              2
+            ]
+          },
+          {
+            "questionId": "q8",
+            "mean": 0.75,
+            "spread": 3,
+            "options": [
+              1,
+              -1,
+              1,
+              2
+            ]
+          },
+          {
+            "questionId": "q12",
+            "mean": 0.75,
+            "spread": 4,
+            "options": [
+              2,
+              -2,
+              1,
+              2
+            ]
+          },
+          {
+            "questionId": "q9",
+            "mean": -0.5,
+            "spread": 4,
+            "options": [
+              -1,
+              -2,
+              -1,
+              2
+            ]
+          },
+          {
+            "questionId": "q16",
+            "mean": 0.5,
+            "spread": 4,
+            "options": [
+              -2,
+              2,
+              1,
+              1
+            ]
+          }
+        ],
+        "widestSpreads": [
+          {
+            "questionId": "q2",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              1,
+              -2,
+              -1,
+              2
+            ]
+          },
+          {
+            "questionId": "q3",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              1,
+              -2,
+              2,
+              -1
+            ]
+          },
+          {
+            "questionId": "q4",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              -1,
+              2,
+              1,
+              -2
+            ]
+          },
+          {
+            "questionId": "q5",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              -1,
+              1,
+              2,
+              -2
+            ]
+          },
+          {
+            "questionId": "q6",
+            "mean": 0.75,
+            "spread": 4,
+            "options": [
+              -2,
+              2,
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      {
+        "dimension": "T_F",
+        "nonZeroQuestionMeans": [
+          {
+            "questionId": "q4",
+            "mean": -0.5,
+            "spread": 3,
+            "options": [
+              -2,
+              1,
+              1,
+              -2
+            ]
+          },
+          {
+            "questionId": "q8",
+            "mean": 0.5,
+            "spread": 4,
+            "options": [
+              1,
+              -2,
+              1,
+              2
+            ]
+          },
+          {
+            "questionId": "q9",
+            "mean": -0.5,
+            "spread": 4,
+            "options": [
+              -1,
+              -2,
+              -1,
+              2
+            ]
+          },
+          {
+            "questionId": "q12",
+            "mean": 0.5,
+            "spread": 4,
+            "options": [
+              2,
+              -2,
+              1,
+              1
+            ]
+          },
+          {
+            "questionId": "q14",
+            "mean": -0.5,
+            "spread": 4,
+            "options": [
+              -1,
+              -1,
+              2,
+              -2
+            ]
+          }
+        ],
+        "widestSpreads": [
+          {
+            "questionId": "q1",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              -1,
+              -2,
+              2,
+              1
+            ]
+          },
+          {
+            "questionId": "q2",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              2,
+              -2,
+              -1,
+              1
+            ]
+          },
+          {
+            "questionId": "q3",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              1,
+              -2,
+              2,
+              -1
+            ]
+          },
+          {
+            "questionId": "q5",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              -2,
+              -1,
+              1,
+              2
+            ]
+          },
+          {
+            "questionId": "q6",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              -2,
+              1,
+              -1,
+              2
+            ]
+          }
+        ]
+      },
+      {
+        "dimension": "J_P",
+        "nonZeroQuestionMeans": [
+          {
+            "questionId": "q10",
+            "mean": 0.75,
+            "spread": 4,
+            "options": [
+              -2,
+              2,
+              1,
+              2
+            ]
+          },
+          {
+            "questionId": "q2",
+            "mean": -0.5,
+            "spread": 4,
+            "options": [
+              2,
+              -1,
+              -2,
+              -1
+            ]
+          },
+          {
+            "questionId": "q11",
+            "mean": -0.5,
+            "spread": 4,
+            "options": [
+              2,
+              -2,
+              -1,
+              -1
+            ]
+          },
+          {
+            "questionId": "q14",
+            "mean": -0.5,
+            "spread": 4,
+            "options": [
+              -1,
+              -1,
+              2,
+              -2
+            ]
+          },
+          {
+            "questionId": "q6",
+            "mean": 0.25,
+            "spread": 3,
+            "options": [
+              -1,
+              -1,
+              1,
+              2
+            ]
+          }
+        ],
+        "widestSpreads": [
+          {
+            "questionId": "q1",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              -2,
+              -1,
+              2,
+              1
+            ]
+          },
+          {
+            "questionId": "q2",
+            "mean": -0.5,
+            "spread": 4,
+            "options": [
+              2,
+              -1,
+              -2,
+              -1
+            ]
+          },
+          {
+            "questionId": "q3",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              1,
+              -2,
+              2,
+              -1
+            ]
+          },
+          {
+            "questionId": "q4",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              -1,
+              2,
+              1,
+              -2
+            ]
+          },
+          {
+            "questionId": "q5",
+            "mean": 0,
+            "spread": 4,
+            "options": [
+              -1,
+              1,
+              2,
+              -2
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -70,10 +70,15 @@ analysis/calibration-round*.md
 
 # Misc assets / archives
 *.png
+!public/images/daru-characters/*.png
+!public/images/lysg-home-hero.png
 *.zip
 *.tar
 *.gz
 repomix-output.xml
+
+# Browser-saved conversion page assets
+scripts/convert-daru-data_files/
 
 # Internal docs
 DEBUG_SUBMIT_400.md

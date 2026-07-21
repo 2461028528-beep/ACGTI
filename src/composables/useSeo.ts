@@ -1,7 +1,7 @@
 import { useHead } from '@unhead/vue'
 import { computed, type MaybeRef, unref } from 'vue'
 
-const SITE_NAME = 'ACGTI'
+const SITE_NAME = '大如传测试'
 const SITE_URL = 'https://acgti.tianxingleo.top'
 
 interface SeoOptions {
@@ -21,11 +21,13 @@ export function useSeo(options: SeoOptions) {
 
   const fullTitle = computed(() => {
     const t = unref(options.title)
-    return t.includes(SITE_NAME) ? t : `${t} - ${SITE_NAME}`
+    return t
   })
 
   const imageUrl = computed(() => {
-    return unref(options.image) ?? `${SITE_URL}/og-image.png`
+    const image = unref(options.image)
+    if (!image) return `${SITE_URL}/og-image.png`
+    return image.startsWith('http') ? image : `${SITE_URL}${image.startsWith('/') ? image : `/${image}`}`
   })
 
   useHead({

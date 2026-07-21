@@ -33,8 +33,10 @@ export type QuestionArchetypeWeightId =
 export interface QuestionOption {
   id: string
   label: string
-  tone: string
-  weights: Partial<Record<QuestionArchetypeWeightId, number>>
+  tone?: string
+  weights?: Partial<Record<QuestionArchetypeWeightId, number>>
+  dimensionScores?: Partial<Record<DimensionPair, number>>
+  traitScores?: Record<string, number>
 }
 
 export interface Question {
@@ -44,8 +46,8 @@ export interface Question {
   scene: string
   options?: QuestionOption[]
   weights?: Partial<Record<QuestionArchetypeWeightId, number>>
-  dimension: DimensionPair
-  sign: 1 | -1
+  dimension?: DimensionPair
+  sign?: 1 | -1
 }
 
 export interface Archetype {
@@ -123,17 +125,37 @@ export interface CharacterMatchResult {
   probability: number
 }
 
+export interface DaruCharacterProfile {
+  id: string
+  name: string
+  mbti: string
+  traits: Record<string, number>
+}
+
+export interface DaruCharacterMatchResult {
+  character: DaruCharacterProfile
+  mbtiScore: number
+  traitScore: number
+  tendencyScore: number
+  totalScore: number
+}
+
 export interface QuizResult {
+  submissionId?: string
   code: string
   mbtiCode: string
   archetype: Archetype
   scores: Record<DimensionPair, DimensionScore>
+  rawDimensionScores?: Record<DimensionPair, number>
   tags: string[]
   matchScore: number
   matchProbability: number
   characterMatches: CharacterMatch[]
   topCharacterMatches: CharacterMatchResult[]
   featuredCharacter: CharacterMatch | null
+  matchedCharacter?: DaruCharacterProfile | null
+  daruCharacterMatches?: DaruCharacterMatchResult[]
+  daruTraitScores?: Record<string, number>
 }
 
 // 16personalities 风格的额外类型

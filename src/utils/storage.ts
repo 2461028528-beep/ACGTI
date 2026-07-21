@@ -1,12 +1,14 @@
 import type { QuizRecord } from '../types/quiz'
 
-const STORAGE_KEY = 'acgti:last-result'
+const STORAGE_KEY = 'daru:last-result'
+const LEGACY_STORAGE_KEY = 'acgti:last-result'
 
 export function loadLastRecord(): QuizRecord | null {
   if (typeof window === 'undefined') {
     return null
   }
 
+  window.localStorage.removeItem(LEGACY_STORAGE_KEY)
   const raw = window.localStorage.getItem(STORAGE_KEY)
 
   if (!raw) {
@@ -26,6 +28,7 @@ export function saveLastRecord(record: QuizRecord) {
     return
   }
 
+  window.localStorage.removeItem(LEGACY_STORAGE_KEY)
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record))
 }
 
@@ -34,5 +37,6 @@ export function clearLastRecord() {
     return
   }
 
+  window.localStorage.removeItem(LEGACY_STORAGE_KEY)
   window.localStorage.removeItem(STORAGE_KEY)
 }

@@ -8,6 +8,7 @@
     "dev": "vite",
     "validate:data": "node scripts/validate-character-data.mjs",
     "generate:data": "node scripts/build-character-data.mjs",
+    "simulate:daru": "node scripts/simulate-daru.mjs",
     "build": "node scripts/validate-character-data.mjs && node scripts/build-character-data.mjs && vue-tsc -b && vite build",
     "preview": "vite preview",
     "build:watch": "vite build --watch",
@@ -17,7 +18,8 @@
     "@unhead/vue": "^3.0.4",
     "html-to-image": "^1.11.13",
     "vue": "^3.5.32",
-    "vue-router": "^4.6.2"
+    "vue-router": "^4.6.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^24.12.2",
