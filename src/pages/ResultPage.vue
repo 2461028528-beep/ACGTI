@@ -15,6 +15,17 @@ type DaruCharacterMessage = {
   image: string
 }
 
+type CharacterStat = {
+  name: string
+  count: number
+  percent: number
+}
+
+type GlobalStats = {
+  total: number
+  characters: CharacterStat[]
+}
+
 const MESSAGE_PLACEHOLDER = '完整人物解析即将上线。'
 const nameAliases: Record<string, string> = {
   高烯月: '高晞月',
@@ -25,6 +36,11 @@ const router = useRouter()
 const quiz = useQuiz()
 const isImageBroken = ref(false)
 const hasQueuedReport = ref(false)
+const statsLoading = ref(false)
+const statsError = ref(false)
+const globalStats = ref<GlobalStats | null>(null)
+const countFormatter = new Intl.NumberFormat('zh-CN')
+const statsApiUrl = import.meta.env.VITE_STATS_API_URL || '/api/stats'
 const result = computed(() => quiz.latestResult.value)
 const matchedCharacter = computed(() => result.value?.matchedCharacter ?? null)
 const winningMatch = computed(() => result.value?.daruCharacterMatches?.[0] ?? null)
@@ -52,7 +68,10 @@ onMounted(async () => {
 
   if (!quiz.latestResult.value) {
     void router.replace('/quiz')
+    return
   }
+
+  void loadGlobalStats()
 })
 
 watch(
@@ -78,6 +97,62 @@ function visibleText(value: string | undefined) {
 
 function formatPercent(score: number | undefined) {
   return typeof score === 'number' && Number.isFinite(score) ? `${score.toFixed(1)}%` : '--'
+}
+
+function formatCount(value: number) {
+  return countFormatter.format(value)
+}
+
+function isFiniteNonNegativeNumber(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0
+}
+
+function parseGlobalStats(payload: unknown): GlobalStats {
+  if (!payload || typeof payload !== 'object') throw new Error('Invalid stats response')
+
+  const candidate = payload as { total?: unknown; characters?: unknown }
+  if (!isFiniteNonNegativeNumber(candidate.total) || !Array.isArray(candidate.characters)) {
+    throw new Error('Invalid stats response')
+  }
+
+  const characters = candidate.characters.map((item) => {
+    if (!item || typeof item !== 'object') throw new Error('Invalid character stats')
+
+    const character = item as { name?: unknown; count?: unknown; percent?: unknown }
+    if (
+      typeof character.name !== 'string' ||
+      !character.name.trim() ||
+      !isFiniteNonNegativeNumber(character.count) ||
+      !isFiniteNonNegativeNumber(character.percent)
+    ) {
+      throw new Error('Invalid character stats')
+    }
+
+    return {
+      name: character.name,
+      count: character.count,
+      percent: character.percent,
+    }
+  })
+
+  return { total: candidate.total, characters }
+}
+
+async function loadGlobalStats() {
+  if (statsLoading.value || globalStats.value) return
+
+  statsLoading.value = true
+  statsError.value = false
+
+  try {
+    const response = await fetch(statsApiUrl)
+    if (!response.ok) throw new Error(`Stats request failed: ${response.status}`)
+    globalStats.value = parseGlobalStats(await response.json())
+  } catch {
+    statsError.value = true
+  } finally {
+    statsLoading.value = false
+  }
 }
 
 function handleImageError() {
@@ -129,6 +204,31 @@ function retry() {
       <button type="button" @click="retry">重新测试</button>
       <RouterLink to="/">返回首页</RouterLink>
     </section>
+
+    <section class="stats-card" aria-labelledby="character-ranking-title">
+      <header class="stats-header">
+        <h2 id="character-ranking-title">角色命中榜</h2>
+        <p>看看大家最后都成为了哪位主</p>
+        <p v-if="globalStats" class="stats-total">
+          已有 {{ formatCount(globalStats.total) }} 人完成测试
+        </p>
+      </header>
+
+      <p v-if="statsLoading" class="stats-status">正在加载角色命中榜...</p>
+      <p v-else-if="statsError" class="stats-status">排行榜暂时加载失败</p>
+      <p v-else-if="globalStats && globalStats.characters.length === 0" class="stats-status">
+        暂无角色命中数据
+      </p>
+
+      <ol v-else-if="globalStats" class="ranking-list">
+        <li v-for="(character, index) in globalStats.characters" :key="`${character.name}-${index}`">
+          <span class="rank-badge" :class="`rank-${index + 1}`">{{ index + 1 }}</span>
+          <span class="ranking-name">{{ character.name }}</span>
+          <span class="ranking-count">{{ formatCount(character.count) }}人</span>
+          <span class="ranking-percent">{{ character.percent }}%</span>
+        </li>
+      </ol>
+    </section>
   </main>
 </template>
 
@@ -142,7 +242,8 @@ function retry() {
 
 .result-card,
 .result-copy,
-.actions {
+.actions,
+.stats-card {
   width: min(980px, 100%);
   margin-left: auto;
   margin-right: auto;
@@ -291,6 +392,123 @@ function retry() {
   color: #ffffff;
 }
 
+.stats-card {
+  margin-top: 18px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(31, 61, 52, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(31, 61, 52, 0.06);
+  color: #1f3d34;
+  box-sizing: border-box;
+}
+
+.stats-header {
+  text-align: center;
+}
+
+.stats-header h2 {
+  margin: 0;
+  color: #1f3d34;
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.stats-header p {
+  margin: 6px 0 0;
+  color: #718078;
+  font-size: 15px;
+}
+
+.stats-header .stats-total {
+  margin-top: 14px;
+  color: #2f7d5e;
+  font-size: 14px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-status {
+  margin: 20px 0 4px;
+  color: #718078;
+  text-align: center;
+  font-size: 14px;
+}
+
+.ranking-list {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(31, 61, 52, 0.08);
+}
+
+.ranking-list li {
+  min-height: 52px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) max-content 58px;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(31, 61, 52, 0.08);
+}
+
+.ranking-list li:last-child {
+  border-bottom: 0;
+}
+
+.rank-badge {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e5f2eb;
+  color: #2f6d55;
+  font-size: 13px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.rank-1 {
+  background: #f3e5b7;
+  color: #735f24;
+}
+
+.rank-2 {
+  background: #e4e7e8;
+  color: #566166;
+}
+
+.rank-3 {
+  background: #ead1bd;
+  color: #794d35;
+}
+
+.ranking-name {
+  min-width: 0;
+  overflow: hidden;
+  color: #1f3d34;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranking-count,
+.ranking-percent {
+  color: #52635b;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.ranking-percent {
+  color: #2f7d5e;
+  font-weight: 900;
+}
+
 @media (max-width: 760px) {
   .result-page {
     min-height: auto;
@@ -377,6 +595,50 @@ function retry() {
     flex: 1;
     min-height: 46px;
     padding: 0 12px;
+  }
+
+  .stats-card {
+    margin-top: 14px;
+    padding: 18px 12px 12px;
+    border-radius: 16px;
+  }
+
+  .stats-header h2 {
+    font-size: 24px;
+  }
+
+  .stats-header p {
+    font-size: 14px;
+  }
+
+  .stats-header .stats-total {
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  .ranking-list {
+    margin-top: 14px;
+  }
+
+  .ranking-list li {
+    min-height: 50px;
+    grid-template-columns: 32px minmax(0, 1fr) max-content 52px;
+    gap: 8px;
+  }
+
+  .rank-badge {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .ranking-name {
+    font-size: 14px;
+  }
+
+  .ranking-count,
+  .ranking-percent {
+    font-size: 13px;
   }
 }
 
